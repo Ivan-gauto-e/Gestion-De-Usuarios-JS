@@ -1,0 +1,32 @@
+body {
+  background-color: rgb(145, 141, 141);
+}
+
+#userContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.user-card {
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  justify-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.user-card button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #1ceecb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

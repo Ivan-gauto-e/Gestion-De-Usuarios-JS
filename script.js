@@ -1,6 +1,6 @@
 const url = "https://64fb193acb9c00518f7aa434.mockapi.io/api/v1/userList";
 
-const CONTAINER = document.getElementById("userContainer");
+const container = document.getElementById("userContainer");
 
 async function getUsers() {
   const response = await fetch(url);
@@ -9,8 +9,15 @@ async function getUsers() {
   data.forEach((user) => {
     const card = document.createElement("div");
     card.classList.add("user-card");
-    card.innerHTML = `<p>${user.name}</p> <p>Email: ${user.email}</p> <p>ID: ${user.id}</p>`;
-    CONTAINER.appendChild(card);
+    card.innerHTML = `<h3>${user.name}</h3> <p>Email: ${user.email}</p> <p>ID: ${user.id}</p>`;
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "DELETE";
+    deleteButton.addEventListener("click", async () => {
+      const success = await deleteUser(user.id);
+      if (success) card.remove();
+    });
+    card.appendChild(deleteButton);
+    container.appendChild(card);
   });
 }
 getUsers();
@@ -22,8 +29,11 @@ async function deleteUser(id) {
       method: "DELETE",
     }
   );
-  if (response.ok) console.log(`Se eliminó el usuario con el ID${id}`);
-  else {
+  if (response.ok) {
+    console.log(`Se eliminó el usuario con el ID${id}`);
+    return true;
+  } else {
     console.error("Error al eliminar al usuario");
+    return false;
   }
 }
