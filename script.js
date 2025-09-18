@@ -14,3 +14,16 @@ async function getUsers() {
   });
 }
 getUsers();
+
+async function deleteUser(id) {
+  const response = await fetch(
+    `https://64fb193acb9c00518f7aa434.mockapi.io/api/v1/userList/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+  if (response.ok) console.log(`Se eliminó el usuario con el ID${id}`);
+  else {
+    console.error("Error al eliminar al usuario");
+  }
+}
